@@ -31,3 +31,5 @@
 # Debug files
 *.dSYM/
 *.su
+# backup files for Kicad
+*.bak
