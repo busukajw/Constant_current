@@ -33,3 +33,5 @@
 *.su
 # backup files for Kicad
 *.bak
+# Mac filesystem  stuff
+.DS_Store
