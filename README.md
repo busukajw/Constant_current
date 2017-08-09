@@ -1,4 +1,4 @@
-# Constant Load Dummy Load Generator
+# Dummy Constant Load Generator
 Project to explore and learn building a Constant Current Dummy Load Generator.
 This is going to my first exploration into building an entire electronics
  project. From basic idea and coming up with schematics all the way through a
