@@ -56,20 +56,20 @@ start
 	
 ;***** Main Loop
 main_loop
-	; turn on LED
-	banksel LATA
-	bcf	LATA,1		; RA1 -> low
+
 	
-	movlw	.4
-	pagesel	delay01
-	call	delay01
-	
-	
-	pagesel	main_loop
-	goto	main_loop
-	
-	call	delay01
-	goto	main_loop
+	pagesel	lcd_init        ;intialise  the lcd
+	call	lcd_init
+	movwf	d'72'		;move 'H'
+	call	send_data
+	movwf	d'101'		; move 'e' 
+	call	send_data   
+	movwf	d'108'		; move 'l'
+	call	send_data   
+	movwf	d'108'		; move 'l'
+	call	send_data
+	movwf	d'111'		; move 'o'
+	call	send_data
 	
 	
 	
