@@ -13,7 +13,7 @@
     GLOBAL  lcd_init
     GLOBAL  lcd_reset
     GLOBAL  send_data
-    GLOBAL  send_ins
+    GLOBAL  send_ins		; send instruction
     
     EXTERN  delay10
     EXTERN  delay01	    
@@ -74,6 +74,7 @@ lcd_reset
 	    
 	    return
 ;********************************************************************
+; send_data takes the data from tmp_data and sends it to the LCD	    
 send_data   movwf	tmp_data
 	    andlw	0xF0		; clear the Least Sig 4 bits 0
 	    movwf	LCD_DATA	; place MSB of data onto data bus
@@ -89,7 +90,8 @@ send_data   movwf	tmp_data
  		
 	    return
 ;******************************************************************************
-send_ins    movwf	tmp_data
+; send instruction; collects the instruction from tmp_data then sends
+send_ins    movwf	tmp_data    
 	    andlw	0xF0		;clear the least sig 4 bits
 	    movwf	LCD_DATA	; place MSB of data on to data bus
 	    bcf		LCD_RS	; set RS to 0 set for instruction
