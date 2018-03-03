@@ -1,6 +1,6 @@
 ;*******************************************************************************
 ;                                                                              *
-;    Filename:Delay Routine                                                    
+;    Filename:Constant_current.asm                                                    
 ;    Author: Aaron Walker                                                      
 ;    Description: Building initial delay routines                                                    
 ;                                                                              
@@ -47,6 +47,9 @@ start
 	movlw	b'00000000'		;configure PORTB as an OUTPUT
 	banksel	TRISB
 	movwf	TRISB
+	movlw	b'00000000'		; configure PORTC as an OUTPUT
+	banksel	TRISC
+	movwf	TRISC
 	
 	; configure oscillator
 	movlw	b'00000100'	; select 8MHz manual page 93
