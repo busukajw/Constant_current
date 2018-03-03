@@ -24,8 +24,8 @@ tmp_data    res	1
 ;Pin Assignments
 ;********** VARIABLE DEFINITIONS
 #define    LCD_DATA	LATB
-#define    LCD_EN	LATB, 0
-#define    LCD_RS	LATB, 1
+#define    LCD_EN	LATC, 0
+#define    LCD_RS	LATC, 1 
 
 ; Constants this is going to be where the commands for the LCD are listed
     constant	func_set_4b =	b'00100000'	;set commsfor 2 line 4 bit mode
