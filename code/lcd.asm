@@ -28,7 +28,9 @@ tmp_data    res	1
 #define    LCD_RS	LATC, 1 
 
 ; Constants this is going to be where the commands for the LCD are listed
-    constant	func_set_4b =	b'00100000'	;set commsfor 2 line 4 bit mode
+    constant	func_set_8 =	b'00100000'	;set comms for 8bit
+    constant	func_set_4 =	b'00101000'	;set 4bit 2 lines std font 5x9
+    constant	entry_mode =	b'00001110'	;cursor & display shift right
     constant    clr_dspl = 	b'00000001'	; clear display    
     constant    rtn_home = 	b'00000010'	; move cursor to home
     constant    line_1 = 	b'10000000'	;select line 1
@@ -47,30 +49,35 @@ lcd_init
 	    
 	    return
 lcd_reset   
-	    movlw	0x30		    ; initial init value
+	    movlw	func_set_8		    ; initial init value
 	    pagesel	send_ins
 	    call	send_ins
 	    movlw	.1		    ; delay for 10ms
 	    pagesel	delay10	    
 	    call	delay10
-	    movlw	0x30		    ; send init value
+	    movlw	func_set_4	    ; send init value
 	    pagesel	send_ins
 	    call	send_ins
 	    movlw	.1
 	    pagesel	delay01
 	    call	delay01
-	    movlw	0x30
+	    movlw	clr_dspl	; clear display
 	    pagesel	send_ins
 	    call	send_ins
 	    movlw	.1
 	    pagesel	delay01
 	    call	delay01
-	    movlw	0x28		; select bus width of 4 bits
+	    movlw	rtn_home		; cursor home
 	    pagesel	send_ins
 	    call	send_ins	; send instruction
 	    movlw	.1
 	    pagesel	delay01	    
 	    call	delay01		; delay 1 ms
+	    movlw	entry_mode
+	    pagesel	send_ins
+	    call	send_ins	; send instruction
+	    pagesel	delay01
+	    call	delay01
 	    
 	    return
 ;********************************************************************
